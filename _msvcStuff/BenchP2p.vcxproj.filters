@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="_pch">
+      <UniqueIdentifier>{d908d6e3-dc21-4768-9872-f958f7f240b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ThirdParty">
+      <UniqueIdentifier>{ff3908f1-9a8c-4938-b226-1b028dbdc729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Xxx">
+      <UniqueIdentifier>{5948e6ca-4bf1-4b54-9601-73dcf9397fff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\boostConfig">
+      <UniqueIdentifier>{196e9a70-3d73-4962-bb61-d9497c45f67e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Behavior">
+      <UniqueIdentifier>{33d929eb-8ff4-4294-90be-78997f3fb583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Emulation">
+      <UniqueIdentifier>{82b92227-a769-4d81-9b73-0842533ec4fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Net">
+      <UniqueIdentifier>{f679ba08-5f55-4ec5-bd5a-730f5f644a44}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>_pch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BenchP2p.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>_pch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ThirdParty\Hexdump.hpp">
+      <Filter>Header Files\ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\_L\boost\config\user.hpp">
+      <Filter>Header Files\boostConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SignalSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Broker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\aliases.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Behavior\Pair.h">
+      <Filter>Header Files\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Emulation\Config.h">
+      <Filter>Header Files\Emulation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Emulation\Emulator.h">
+      <Filter>Header Files\Emulation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Emulation\Kind.h">
+      <Filter>Header Files\Emulation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Emulation\Statistics.h">
+      <Filter>Header Files\Emulation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Net\Base.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Net\Communicator.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>

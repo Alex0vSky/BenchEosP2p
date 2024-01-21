@@ -1,0 +1,13 @@
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define ABSL_FLAG
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define BOOST_ASIO_INITFN_AUTO_RESULT_TYPE_PREFIX(ct, sig)
+#define BOOST_ASIO_INITFN_AUTO_RESULT_TYPE_PREFIX(ct, sig) BOOST_ASIO_INITFN_RESULT_TYPE(ct, sig)
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define BOOST_ASIO_COMPLETION_TOKEN_FOR(sig)
