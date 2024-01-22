@@ -19,9 +19,6 @@
     <Filter Include="Header Files\ThirdParty">
       <UniqueIdentifier>{ff3908f1-9a8c-4938-b226-1b028dbdc729}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Xxx">
-      <UniqueIdentifier>{5948e6ca-4bf1-4b54-9601-73dcf9397fff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\boostConfig">
       <UniqueIdentifier>{196e9a70-3d73-4962-bb61-d9497c45f67e}</UniqueIdentifier>
     </Filter>
@@ -33,6 +30,9 @@
     </Filter>
     <Filter Include="Header Files\Net">
       <UniqueIdentifier>{f679ba08-5f55-4ec5-bd5a-730f5f644a44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Behavior\Multiple">
+      <UniqueIdentifier>{302a3e4a-a4e5-4592-8914-f631adbb7778}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +65,7 @@
     <ClInclude Include="..\src\SignalSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Broker.h">
+    <ClInclude Include="..\src\BrokerPair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\aliases.h">
@@ -91,6 +91,21 @@
     </ClInclude>
     <ClInclude Include="..\src\Net\Communicator.h">
       <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\BrokerMultiple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Behavior\Multiple\Server.h">
+      <Filter>Header Files\Behavior\Multiple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Behavior\Multiple\Client.h">
+      <Filter>Header Files\Behavior\Multiple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Net\PipeSpawner.h">
+      <Filter>Header Files\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\IBroker.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 #pragma once // Copyright 2024 Alex0vSky (https://github.com/Alex0vSky)
 namespace syscross::BenchP2p::Net { 
 class Communicator {
-	char m_data[ 1024 ];
+	data_t m_data;
 	boost::system::error_code m_error; 
 
 protected:
@@ -18,6 +18,9 @@ protected:
 	}
 	auto getError() const {
 		return m_error;
+	}
+	cref_data_t getData() const {
+		return m_data;
 	}
 
 public:

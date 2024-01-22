@@ -256,16 +256,21 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\_L\boost\config\user.hpp" />
     <ClInclude Include="..\src\aliases.h" />
+    <ClInclude Include="..\src\Behavior\Multiple\Client.h" />
+    <ClInclude Include="..\src\Behavior\Multiple\Server.h" />
     <ClInclude Include="..\src\Behavior\Pair.h" />
-    <ClInclude Include="..\src\Broker.h" />
+    <ClInclude Include="..\src\BrokerPair.h" />
+    <ClInclude Include="..\src\BrokerMultiple.h" />
     <ClInclude Include="..\src\Emulation\Config.h" />
     <ClInclude Include="..\src\Emulation\Emulator.h" />
     <ClInclude Include="..\src\Emulation\Kind.h" />
     <ClInclude Include="..\src\Emulation\Statistics.h" />
+    <ClInclude Include="..\src\IBroker.h" />
     <ClInclude Include="..\src\Log.h" />
     <ClInclude Include="..\src\Main.h" />
     <ClInclude Include="..\src\Net\Base.h" />
     <ClInclude Include="..\src\Net\Communicator.h" />
+    <ClInclude Include="..\src\Net\PipeSpawner.h" />
     <ClInclude Include="..\src\SignalSet.h" />
     <ClInclude Include="..\src\ThirdParty\Hexdump.hpp" />
     <ClInclude Include="..\src\Version.h" />

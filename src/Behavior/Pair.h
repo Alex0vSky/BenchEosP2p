@@ -1,32 +1,31 @@
 // src\Behavior\Pair.h - clients pair
 #pragma once // Copyright 2024 Alex0vSky (https://github.com/Alex0vSky)
 namespace syscross::BenchP2p::Behavior { 
-class Pair final : public Net::Base, public std::enable_shared_from_this< Pair > {
-	tcp::socket *m_socketPair = nullptr;
-	IBroker *m_broker = nullptr;
+class Pair final : public Net::Base, public std::enable_shared_from_this< Pair >, public Net::PipeSpawner< Pair > {
+	IBrokerPair *m_broker = nullptr;
+	peers_t m_singlePeer;
+	struct Private{};
 
-	tcp::socket *getPeer(Command::type *command) override {
-		if ( !m_socketPair ) 
-			if ( !( m_socketPair = m_broker ->getPair( ) ) ) 
-				return *command = Command::NoPair, nullptr;
-		return m_socketPair;
+	peers_t *getPeers(cref_data_t, Command::type *command) override {
+		*command = Command::Pair::NoPair;
+		if ( !m_singlePeer.size( ) ) 
+			if ( tcp::socket *socket = m_broker ->getPair( ) ) 
+				m_singlePeer.push_back( socket );
+		return &m_singlePeer;
 	}
 
 public:
-	Pair(tcp::socket &&socket, tcp::socket *socketPair, IBroker *broker = nullptr) : 
+	Pair(Private, tcp::socket &&socket, tcp::socket *pair, IBrokerPair *broker) : 
 		Base( std::move( socket ) )
-		, m_socketPair( socketPair )
 		, m_broker( broker )
+		, m_singlePeer{ pair ?peers_t{ pair } :peers_t{ } }
 	{}
-
-	tcp::socket *start() {
-		co_spawn( getSocket( ) ->get_executor( )
-				, [self = shared_from_this( )] { 
-					return self ->pipe( );
-				}
-				, c_detached 
-			);
-		return getSocket( );
+	~Pair() {
+		m_broker ->drop( );
 	}
+    static auto create(tcp::socket &&socket, tcp::socket *pair, IBrokerPair *broker) {
+		return std::make_shared< Pair >( 
+			Private( ), std::move( socket ), pair, broker );
+    }
 };
 } // namespace syscross::BenchP2p::Behavior

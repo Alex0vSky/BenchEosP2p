@@ -12,8 +12,12 @@
 #include "Emulation/Emulator.h"
 #include "Net/Communicator.h"
 #include "Net/Base.h"
-#include "Behavior/Pair.h" //#include "Behavior/Multiple.h"
-#include "Broker.h"
+#include "Net/PipeSpawner.h"
+#include "Behavior/Pair.h"
+#include "Behavior/Multiple/Client.h"
+#include "Behavior/Multiple/Server.h"
+#include "BrokerPair.h"
+#include "BrokerMultiple.h"
 
 namespace syscross::BenchP2p { 
 struct Main {
@@ -24,9 +28,11 @@ struct Main {
 		u_short port = 55555;
 		if ( argc > 1 )
 			port = static_cast< u_short >( std::atoi( argv[ 1 ] ) );
+		auto acceptor = tcp::acceptor( io_context, { tcp::v4( ), port } );
 		co_spawn( 
 				io_context
-				, Broker::listener( tcp::acceptor( io_context, { tcp::v4( ), port } ) )
+				//, Broker::listener( std::move( acceptor ) )
+				, BrokerMultiple::listener( std::move( acceptor ) )
 				, c_detached
 			);
 		io_context.run( );
