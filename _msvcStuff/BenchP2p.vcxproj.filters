@@ -19,9 +19,6 @@
     <Filter Include="Header Files\ThirdParty">
       <UniqueIdentifier>{ff3908f1-9a8c-4938-b226-1b028dbdc729}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\boostConfig">
-      <UniqueIdentifier>{196e9a70-3d73-4962-bb61-d9497c45f67e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Behavior">
       <UniqueIdentifier>{33d929eb-8ff4-4294-90be-78997f3fb583}</UniqueIdentifier>
     </Filter>
@@ -33,6 +30,9 @@
     </Filter>
     <Filter Include="Header Files\Behavior\Multiple">
       <UniqueIdentifier>{302a3e4a-a4e5-4592-8914-f631adbb7778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\_boostConfig">
+      <UniqueIdentifier>{196e9a70-3d73-4962-bb61-d9497c45f67e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,7 +60,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\_L\boost\config\user.hpp">
-      <Filter>Header Files\boostConfig</Filter>
+      <Filter>Header Files\_boostConfig</Filter>
     </ClInclude>
     <ClInclude Include="..\src\SignalSet.h">
       <Filter>Header Files</Filter>
@@ -106,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="..\src\IBroker.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Behavior\Multiple\Negotiator.h">
+      <Filter>Header Files\Behavior\Multiple</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

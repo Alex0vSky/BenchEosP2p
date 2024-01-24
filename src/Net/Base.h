@@ -31,7 +31,7 @@ protected:
 				}
 			}
 		}
-		LOG( "[E] error %d", getError( ).value( ) );
+		LOG( "[E] error %d '%s'", getError( ).value( ), getError( ).message( ).c_str( ) );
 	    m_socket.close( );
 	}
 	Base(tcp::socket &&socket) : 

@@ -2,6 +2,7 @@
 #pragma once // Copyright 2024 Alex0vSky (https://github.com/Alex0vSky)
 namespace syscross::BenchP2p::Behavior::Multiple {
 class Client final : public Net::Base, public std::enable_shared_from_this< Client >, public Net::PipeSpawner< Client > {
+	struct Private{};
 	IBrokerMulti *m_broker = nullptr;
 	peers_t m_singlePeer;
 
@@ -11,7 +12,7 @@ class Client final : public Net::Base, public std::enable_shared_from_this< Clie
 	}
 
 public:
-	Client(tcp::socket &&socket, IBrokerMulti *broker, tcp::socket *server) : 
+	Client(Private, tcp::socket &&socket, IBrokerMulti *broker, tcp::socket *server) : 
 		Base( std::move( socket ) )
 		, m_broker( broker )
 		, m_singlePeer{ server }
@@ -19,5 +20,9 @@ public:
 	~Client() {
 		m_broker ->remove( getSocket( ) );
 	}
+    static auto create(tcp::socket &&socket, IBrokerMulti *broker, tcp::socket *server) {
+		return std::make_shared< Client >( 
+			Private( ), std::move( socket ), broker, server );
+    }
 };
 } // namespace syscross::BenchP2p::Behavior::Multiple

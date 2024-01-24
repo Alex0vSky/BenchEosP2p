@@ -16,6 +16,7 @@
 #include "Behavior/Pair.h"
 #include "Behavior/Multiple/Client.h"
 #include "Behavior/Multiple/Server.h"
+#include "Behavior/Multiple/Negotiator.h"
 #include "BrokerPair.h"
 #include "BrokerMultiple.h"
 
@@ -31,7 +32,7 @@ struct Main {
 		auto acceptor = tcp::acceptor( io_context, { tcp::v4( ), port } );
 		co_spawn( 
 				io_context
-				//, Broker::listener( std::move( acceptor ) )
+				//, BrokerPair::listener( std::move( acceptor ) )
 				, BrokerMultiple::listener( std::move( acceptor ) )
 				, c_detached
 			);

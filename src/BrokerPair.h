@@ -1,7 +1,7 @@
-// src\Broker.h - peers connect logic
+// src\BrokerPair.h - peers connect logic
 #pragma once // Copyright 2024 Alex0vSky (https://github.com/Alex0vSky)
 namespace syscross::BenchP2p {
-class Broker final : public IBrokerPair {
+class BrokerPair final : public IBrokerPair {
 	tcp::socket *m_first = nullptr, *m_second = nullptr;
 	tcp::socket *getPair() const override {
 		return m_second;
@@ -17,7 +17,7 @@ class Broker final : public IBrokerPair {
 
 public:
 	static awaitable listener(tcp::acceptor acceptor) {
-		Broker broker;
+		BrokerPair broker;
 		while ( true ) {
 			auto [e, socket] = co_await acceptor.async_accept( c_tuple );
 			if ( e ) {

@@ -2,7 +2,7 @@
 #pragma once // Copyright 2024 Alex0vSky (https://github.com/Alex0vSky)
 namespace syscross::BenchP2p::Net { 
 class Communicator {
-	data_t m_data;
+	data_t m_data = { };
 	boost::system::error_code m_error; 
 
 protected:

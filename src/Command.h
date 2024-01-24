@@ -11,10 +11,13 @@ struct Command {
 	// Multi clients
 	struct Multi {
 		static constexpr type ImServ = { "ImServ\r\n" };
+		// TODO(alex): affectme
 		static constexpr type ImClie = { "ImClie\r\n" };
 		static constexpr type Accept = { "Accept\r\n" };
 		static constexpr type Denied = { "Denied\r\n" };
 		static constexpr type WaitCl = { "WaitCl\r\n" };
+		// the server is in the process of negotiation.
+		static constexpr type SrvNeg = { "SrvNeg\r\n" };
 	};
 };
 bool operator == (const data_t data, Command::type const& cmd) {

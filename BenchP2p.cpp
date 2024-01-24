@@ -20,7 +20,11 @@ int main(int argc, char *argv[]) {
 	//_CrtSetBreakAlloc( 155 );
 	new char[]{ "Goobay!" };
 #endif
-	(void)argv;
+	// for `boost::system::error_code::message` language
+	setlocale( 0, "" );
+#if defined( WIN32 ) 
+	// TODO(alex): Neutral language @insp https://www.curlybrace.com/words/2008/06/10/setthreadlocale-and-setthreaduilanguage-for-localization-on-windows-xp-and-vista/
+#endif
 	syscross::BenchP2p::Main main;
 	try {
 		main.run( argc, argv );
