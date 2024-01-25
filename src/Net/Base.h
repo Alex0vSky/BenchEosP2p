@@ -2,8 +2,9 @@
 #pragma once // Copyright 2024 Alex0vSky (https://github.com/Alex0vSky)
 namespace syscross::BenchP2p::Net { 
 class Base : public Communicator {
-	Emulation::Emulator m_emulation;
+	Emulation::Emulator m_emergencyEmulator;
 	tcp::socket m_socket;
+
 	virtual peers_t *getPeers(cref_data_t, Command::type *) = 0;
 
 protected:
@@ -22,7 +23,7 @@ protected:
 				co_await writeCommand( m_socket, command );
 				continue;
 			}
-			if ( m_emulation.handle( n ) )
+			if ( m_emergencyEmulator.handle( n ) )
 				continue;
 
 			for ( auto &peer : *peers ) {
@@ -34,8 +35,9 @@ protected:
 		LOG( "[E] error %d '%s'", getError( ).value( ), getError( ).message( ).c_str( ) );
 	    m_socket.close( );
 	}
-	Base(tcp::socket &&socket) : 
+	Base(tcp::socket &&socket, config_t config) : 
 		m_socket( std::move( socket ) )
+		, m_emergencyEmulator( config )
 	{}
 
 public:

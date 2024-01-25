@@ -23,9 +23,9 @@ class BrokerMultiple final : public IBrokerMulti {
 	}
 
 public:
-	static awaitable listener(tcp::acceptor acceptor) {
-		BrokerMultiple broker;
+	static awaitable listener(tcp::acceptor acceptor, config_t config) {
 		namespace Multiple = Behavior::Multiple;
+		BrokerMultiple broker;
 		Multiple::Negotiator::serverDetector_t wptrDetector;
 		while ( true ) {
 			auto [e, socket] = co_await acceptor.async_accept( c_tuple );
@@ -36,7 +36,7 @@ public:
 			if ( !wptrDetector.expired( ) ) {
 				if ( wptrDetector.lock( ) ->isServerReady( ) ) {
 					tcp::socket *other = Multiple::Client::create( 
-						std::move( socket ), &broker, broker.m_server )
+						std::move( socket ), &broker, broker.m_server, config )
 						->start( );
 					broker.m_clients.push_back( other );
 				}
@@ -45,7 +45,7 @@ public:
 					continue;
 				}
 			} else {
-				wptrDetector = Multiple::Negotiator::create( std::move( socket ), &broker );
+				wptrDetector = Multiple::Negotiator::create( std::move( socket ), &broker, config );
 			}
 		}
 	}

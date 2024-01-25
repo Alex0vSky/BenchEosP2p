@@ -19,6 +19,9 @@ inline auto buffer(Args&&... args) -> decltype( boost::asio::buffer( std::forwar
 static constexpr auto c_tuple = as_tuple( boost::asio::use_awaitable_t{ } );
 #endif // c_tuple_awaitable
 
+namespace Emulation { 
+struct Config;
+} // namespace Behavior
 namespace Behavior { 
 class Pair;
 namespace Multiple { 
@@ -26,8 +29,6 @@ class Server;
 class Client;
 } // namespace Multiple
 } // namespace Behavior
-//typedef Behavior::Pair client_t;
-//typedef Behavior::Multiple client_t;
 
 static const uint32_t c_dataInBytes = 1024;
 typedef char data_t[ c_dataInBytes ];
@@ -36,6 +37,8 @@ typedef data_t const& cref_data_t;
 typedef std::deque< tcp::socket * > peers_t;
 
 typedef std::chrono::milliseconds timer_resolution_t;
+
+typedef const Emulation ::Config config_t;
 
 //typedef tcp::socket tcp_socket_t;
 

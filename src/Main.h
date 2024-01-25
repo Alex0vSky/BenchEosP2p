@@ -19,24 +19,30 @@
 #include "Behavior/Multiple/Negotiator.h"
 #include "BrokerPair.h"
 #include "BrokerMultiple.h"
+#include "Ui/CmdLine/StringConvert.h"
+#include "Ui/CmdLine/ArgparseImpl.h"
 
 namespace syscross::BenchP2p { 
 struct Main {
-	void run(int argc, char *argv[]) {
+	int run(int argc, wchar_t *argv[]) {
+		Ui::CmdLine::ArgparseImpl cmdLiner( argc, argv );
+		Emulation::Config config;
+		u_short port = 55555;
+		if ( !cmdLiner.parse( &config, &port ) )
+			return ERROR_BAD_ARGUMENTS;
+
 	    boost::asio::io_context io_context( 1 );
 		SignalSet signalSet( io_context );
 		signalSet.ordinary( );
-		u_short port = 55555;
-		if ( argc > 1 )
-			port = static_cast< u_short >( std::atoi( argv[ 1 ] ) );
 		auto acceptor = tcp::acceptor( io_context, { tcp::v4( ), port } );
 		co_spawn( 
 				io_context
-				//, BrokerPair::listener( std::move( acceptor ) )
-				, BrokerMultiple::listener( std::move( acceptor ) )
+				, BrokerPair::listener( std::move( acceptor ), config )
+				//, BrokerMultiple::listener( std::move( acceptor ), config )
 				, c_detached
 			);
 		io_context.run( );
+		return 0;
 	}
 };
 } // namespace syscross::BenchP2p

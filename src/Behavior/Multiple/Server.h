@@ -13,17 +13,17 @@ class Server final : public Net::Base, public std::enable_shared_from_this< Serv
 	}
 
 public:
-	Server(Private, tcp::socket &&socket, IBrokerMulti *broker) : 
-		Base( std::move( socket ) )
+	Server(Private, tcp::socket &&socket, IBrokerMulti *broker, config_t config) : 
+		Base( std::move( socket ), config )
 		, m_broker( broker )
 		, m_peers( broker ->getClients( ) )
 	{}
 	~Server() {
 		m_broker ->drop( );
 	}
-    static auto create(tcp::socket &&socket, IBrokerMulti *broker) {
+    static auto create(tcp::socket &&socket, IBrokerMulti *broker, config_t config) {
 		return std::make_shared< Server >( 
-			Private( ), std::move( socket ), broker );
+			Private( ), std::move( socket ), broker, config );
     }
 };
 } // namespace syscross::BenchP2p::Behavior::Multiple

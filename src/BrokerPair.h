@@ -16,7 +16,7 @@ class BrokerPair final : public IBrokerPair {
 	}
 
 public:
-	static awaitable listener(tcp::acceptor acceptor) {
+	[[nodiscard]] static awaitable listener(tcp::acceptor acceptor, config_t config) {
 		BrokerPair broker;
 		while ( true ) {
 			auto [e, socket] = co_await acceptor.async_accept( c_tuple );
@@ -30,11 +30,11 @@ public:
 			}
 			if ( !broker.m_first ) 
 				broker.m_first = Behavior::Pair::create( 
-					std::move( socket ), nullptr, &broker )
+					std::move( socket ), nullptr, &broker, config )
 					->start( );
 			else
 				broker.m_second = Behavior::Pair::create( 
-					std::move( socket ), broker.m_first, &broker )
+					std::move( socket ), broker.m_first, &broker, config )
 					->start( );
 		}
 	}

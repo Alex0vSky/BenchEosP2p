@@ -12,17 +12,17 @@ class Client final : public Net::Base, public std::enable_shared_from_this< Clie
 	}
 
 public:
-	Client(Private, tcp::socket &&socket, IBrokerMulti *broker, tcp::socket *server) : 
-		Base( std::move( socket ) )
+	Client(Private, tcp::socket &&socket, IBrokerMulti *broker, tcp::socket *server, config_t config) : 
+		Base( std::move( socket ), config )
 		, m_broker( broker )
 		, m_singlePeer{ server }
 	{}
 	~Client() {
 		m_broker ->remove( getSocket( ) );
 	}
-    static auto create(tcp::socket &&socket, IBrokerMulti *broker, tcp::socket *server) {
+    static auto create(tcp::socket &&socket, IBrokerMulti *broker, tcp::socket *server, config_t config) {
 		return std::make_shared< Client >( 
-			Private( ), std::move( socket ), broker, server );
+			Private( ), std::move( socket ), broker, server, config );
     }
 };
 } // namespace syscross::BenchP2p::Behavior::Multiple

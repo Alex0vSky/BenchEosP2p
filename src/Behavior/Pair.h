@@ -15,17 +15,17 @@ class Pair final : public Net::Base, public std::enable_shared_from_this< Pair >
 	}
 
 public:
-	Pair(Private, tcp::socket &&socket, tcp::socket *pair, IBrokerPair *broker) : 
-		Base( std::move( socket ) )
+	Pair(Private, tcp::socket &&socket, tcp::socket *pair, IBrokerPair *broker, config_t config) : 
+		Base( std::move( socket ), config )
 		, m_broker( broker )
 		, m_singlePeer{ pair ?peers_t{ pair } :peers_t{ } }
 	{}
 	~Pair() {
 		m_broker ->drop( );
 	}
-    static auto create(tcp::socket &&socket, tcp::socket *pair, IBrokerPair *broker) {
+    static auto create(tcp::socket &&socket, tcp::socket *pair, IBrokerPair *broker, config_t config) {
 		return std::make_shared< Pair >( 
-			Private( ), std::move( socket ), pair, broker );
+			Private( ), std::move( socket ), pair, broker, config );
     }
 };
 } // namespace syscross::BenchP2p::Behavior

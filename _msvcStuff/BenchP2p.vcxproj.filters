@@ -34,6 +34,12 @@
     <Filter Include="Header Files\_boostConfig">
       <UniqueIdentifier>{196e9a70-3d73-4962-bb61-d9497c45f67e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Ui">
+      <UniqueIdentifier>{ee24e3d7-b705-482a-a6a7-0ce77a2323cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ui\CmdLine">
+      <UniqueIdentifier>{42249382-c295-4bef-962f-3a3932289ab3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -41,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="..\BenchP2p.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Ui\CmdLine\ArgparseImpl.cpp">
+      <Filter>Header Files\Ui\CmdLine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +118,18 @@
     </ClInclude>
     <ClInclude Include="..\src\Behavior\Multiple\Negotiator.h">
       <Filter>Header Files\Behavior\Multiple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Ui\CmdLine\ArgparseImpl.h">
+      <Filter>Header Files\Ui\CmdLine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Ui\CmdLine\Constants.h">
+      <Filter>Header Files\Ui\CmdLine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Ui\CmdLine\StringConvert.h">
+      <Filter>Header Files\Ui\CmdLine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

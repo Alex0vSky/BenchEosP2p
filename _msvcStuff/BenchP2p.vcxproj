@@ -38,7 +38,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_gRPC|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -130,7 +130,7 @@
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>src;..\_msvcStuff;..\src;..\resource;C:\Prj\_L;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\_msvcStuff;..\src;..\src\ThirdParty;C:\Prj\_L;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -249,6 +249,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\BenchP2p.cpp" />
+    <ClCompile Include="..\src\Ui\CmdLine\ArgparseImpl.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="true">Create</PrecompiledHeader>
     </ClCompile>
@@ -262,6 +263,7 @@
     <ClInclude Include="..\src\Behavior\Pair.h" />
     <ClInclude Include="..\src\BrokerPair.h" />
     <ClInclude Include="..\src\BrokerMultiple.h" />
+    <ClInclude Include="..\src\Constants.h" />
     <ClInclude Include="..\src\Emulation\Config.h" />
     <ClInclude Include="..\src\Emulation\Emulator.h" />
     <ClInclude Include="..\src\Emulation\Kind.h" />
@@ -274,6 +276,9 @@
     <ClInclude Include="..\src\Net\PipeSpawner.h" />
     <ClInclude Include="..\src\SignalSet.h" />
     <ClInclude Include="..\src\ThirdParty\Hexdump.hpp" />
+    <ClInclude Include="..\src\Ui\CmdLine\Constants.h" />
+    <ClInclude Include="..\src\Ui\CmdLine\ArgparseImpl.h" />
+    <ClInclude Include="..\src\Ui\CmdLine\StringConvert.h" />
     <ClInclude Include="..\src\Version.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

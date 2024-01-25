@@ -1,5 +1,7 @@
 // src\Version.h - versioning, use PE-file resources via BenchP2p.rc, file will be patched in CI
 #pragma once // Copyright 2024 Alex0vSky (https://github.com/Alex0vSky)
+#define A0S_Copyright \
+	"Copyright 2024 Alex0vSky (https://github.com/Alex0vSky)"
 #define A0S_VERSION_MAJOR 0
 #define A0S_VERSION_MINOR 1
 #define A0S_VERSION_PATCH 0
@@ -17,11 +19,7 @@
 namespace syscross::BenchP2p {
 struct Version { 
 	static const char *getSemver( ) {
-		static const char *szSemver = 
-			"" A0S_stringify( A0S_VERSION_MAJOR ) 
-			"." A0S_stringify( A0S_VERSION_MINOR ) 
-			"." A0S_stringify( A0S_VERSION_PATCH ) 
-			"." A0S_stringify( A0S_VERSION_BUILD );
+		static const char *szSemver = A0S_STRING_VERSION;
 		return szSemver;
 	}
 };
