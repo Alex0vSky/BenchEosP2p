@@ -4,13 +4,13 @@ namespace syscross::BenchP2p::Emulation {
 struct Statistics {
 	static constexpr auto now = std::chrono::steady_clock::now;
 	struct Data {
-		const std::chrono::steady_clock::time_point m_timePoint;
 		const Kind m_kind;
+		const std::chrono::steady_clock::time_point m_timePoint;
 	};
 	std::deque< Data > m_data;
 
 	void add_(Kind kind) {
-		m_data.push_back( { now( ), kind } );
+		m_data.push_back( { kind, now( ) } );
 	}
 
 public:
@@ -26,19 +26,11 @@ public:
 	void add_lossOfEveryN() {
 		add_( Kind::lossOfEveryN );
 	}
-
-	// TODO(alex): upstream? downstream?
-	void fromFirstToSecondBytes(uint32_t) {
+	void add_longPing() {
+		add_( Kind::longPing );
 	}
-	void fromSecondToFirstBytes(uint32_t) {
-	}
-	void lostToSecond() {
-	}
-	void lostToFirst() {
-	}
-	void pingLagDuration(timer_resolution_t) {
-	}
-	void bandwidthDowngradeBytes(uint32_t) {
+	void add_bandwidth() {
+		add_( Kind::bandwidth );
 	}
 };
 } // namespace syscross::BenchP2p::Emulation

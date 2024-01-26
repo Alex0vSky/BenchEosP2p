@@ -16,7 +16,8 @@ static auto getCopyright() {
 
 static auto getUsage() {
 	static const auto value = ( 
-"Bench Epic EOS p2p network emergency emulator\n\n"
+"Bench Epic EOS p2p network emergency emulator\n"
+"Example usage to listen on port 123 and emulate a 2 second delay: \nBenchP2p --port=123 --longPing=2000\n\n"
 		);
 	return value;
 }

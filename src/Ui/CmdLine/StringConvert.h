@@ -28,7 +28,6 @@ struct StringConvert {
 		return sz;
 	}
 
-	// TODO(Alex): do it like template
 	static std::string wcsrtombs(const std::wstring &wcstr) {
 		static bool bLocale = false;
 		if ( !bLocale ) {

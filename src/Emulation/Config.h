@@ -4,6 +4,6 @@ namespace syscross::BenchP2p::Emulation {
 struct Config {
 	std::optional< uint32_t > lossOfEveryN;
 	std::optional< uint32_t > longPingDuration_milli;
-	// TODO(alex): makeme
+	std::optional< uint32_t > bandwidthInKBytes;
 };
 } // namespace syscross::BenchP2p::Emulation

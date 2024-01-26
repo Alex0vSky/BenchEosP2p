@@ -3,40 +3,47 @@
 namespace syscross::BenchP2p::Emulation { 
 class Emulator {
 	config_t m_config;
+	tcp::socket::executor_type const& m_executor;
 	Statistics m_statistics;
 	size_t m_counter = 0;
-	bool lostPacket() {
-		return false;
-	}
-	bool longPing(tcp::socket::executor_type const&) { // or // steady_timer timer(c o_await this_coro::executor);
-		return false;
-	}
-	bool bandwidthAffect(uint32_t KbPerSecond = MAXDWORD32) {
-		(void)KbPerSecond;
-		return false;
-	}
-	bool resetConnection() {
-		return false;
-	}
-	bool connectionDenyDuration(timer_resolution_t) {
+	// TODO(alex): makeme
+	bool isBandwidthAffect_(uint32_t currentDataInBytes) {
+		if ( !m_config.bandwidthInKBytes )
+			return false;
+		uint32_t bandwidthInKBytes = m_config.bandwidthInKBytes.value( );
+		(void)currentDataInBytes;
+		(void)bandwidthInKBytes;
 		return false;
 	}
 
 public:
-	Emulator(config_t config) : 
+	Emulator(config_t config, tcp::socket::executor_type const& executor) : 
 		m_config( config )
+		, m_executor( executor )
 	{}
-	bool handle(std::size_t dataInBytes) {
+	boost::asio::awaitable< bool > handle(std::size_t dataInBytes) {
 		(void)dataInBytes;
 		++m_counter;
 		if ( m_config.lossOfEveryN ) {
-			if ( !( m_counter % m_config.lossOfEveryN.value( ) ) )  {
+			if ( !( m_counter % m_config.lossOfEveryN.value( ) ) ) {
 				m_statistics.add_lossOfEveryN( );
-				return true;
+				co_return true;
 			}
 		}
+		// @insp https://stackoverflow.com/questions/70577818/c20-coroutines-with-boost-awaitable-custom-suspension
+		if ( m_config.longPingDuration_milli ) {
+			boost::posix_time::milliseconds duration( m_config.longPingDuration_milli.value( ) );
+			boost::asio::deadline_timer timer( m_executor, duration );
+			co_await timer.async_wait( use_awaitable );
+			m_statistics.add_longPing( );
+			co_return false;
+		}
+		if ( isBandwidthAffect_( dataInBytes ) ) {
+			m_statistics.add_bandwidth( );
+			co_return false;
+		}
 		m_statistics.add_ordinary( );
-		return false;
+		co_return false;
 	}
 };
 } // namespace syscross::BenchP2p::Emulation

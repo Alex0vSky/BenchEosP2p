@@ -47,6 +47,14 @@ namespace detail_ {
 "\n\t\t\t\t from 1 to 10000\n\t\t\t\t"
 );
 
+		std::optional< uint32_t >
+			&arg_bandwidthInKBytes
+												= kwarg(
+			"bandwidth"
+, "Channel width limitation in kilobytes per second"
+"\n\t\t\t\t not zero\n\t\t\t\t"
+);
+
 		bool &arg_version						= flag(
 			"version"
 , "print version"
@@ -68,9 +76,10 @@ bool ArgparseImpl::parse(Emulation::Config *config, u_short *port) {
 	    std::cout << Constants::getVersion( );
 		::exit( ERROR_SUCCESS );
 	}
+	*port = parsed.arg_port;
 	config ->lossOfEveryN = parsed.arg_lossOfEveryN;
 	config ->longPingDuration_milli = parsed.arg_longPingDuration_milli;
-	*port = parsed.arg_port;
+	config ->bandwidthInKBytes = parsed.arg_bandwidthInKBytes;
 	return true;
 }
 } // namespace syscross::BenchP2p::Ui::CmdLine

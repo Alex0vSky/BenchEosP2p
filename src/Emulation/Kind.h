@@ -6,6 +6,7 @@ enum class Kind {
 	ordinary, 
 	lossOfEveryN, 
 	longPing, 
+	bandwidth, 
 	finish, 
 };
 enum class Kind2 {
