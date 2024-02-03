@@ -17,12 +17,12 @@ protected:
 			std::size_t n = co_await readData( m_socket );
 			if ( getError( ) )
 				break;
-			Command::type command;
+			Command::type command = { };
 			peers_t *peers = getPeers( getData( ), &command );
-			if ( !peers ->size( ) ) {
+			if ( Command::type{ } != command ) 
 				co_await writeCommand( m_socket, command );
+			if ( !peers ->size( ) ) 
 				continue;
-			}
 			if ( co_await m_emergencyEmulator.handle( n ) )
 				continue;
 

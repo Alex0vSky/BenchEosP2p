@@ -22,7 +22,6 @@ public:
 		, m_executor( executor )
 	{}
 	boost::asio::awaitable< bool > handle(std::size_t dataInBytes) {
-		(void)dataInBytes;
 		++m_counter;
 		if ( m_config.lossOfEveryN ) {
 			if ( !( m_counter % m_config.lossOfEveryN.value( ) ) ) {

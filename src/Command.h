@@ -7,6 +7,8 @@ struct Command {
 	struct Pair {
 		static constexpr type NoPair = { "NoPair\r\n" };
 		static constexpr type NoMore = { "NoMore\r\n" };
+		static constexpr type Hello_ = { "Hello_\r\n" };
+		static constexpr type Ready_ = { "Ready_\r\n" };
 	};
 	// Multi clients
 	struct Multi {
@@ -21,6 +23,9 @@ struct Command {
 	};
 };
 bool operator == (const data_t data, Command::type const& cmd) {
+	return !memcmp( data, &cmd, cmd.size( ) - 1 );
+}
+bool operator == (Command::type const& cmd, const data_t data) {
 	return !memcmp( data, &cmd, cmd.size( ) - 1 );
 }
 } // namespace syscross::BenchP2p

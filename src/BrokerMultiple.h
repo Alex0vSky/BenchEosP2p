@@ -3,8 +3,8 @@
 namespace syscross::BenchP2p {
 class BrokerMultiple final : public IBrokerMulti {
 	tcp::socket *m_server = nullptr;
-	mutable peers_t m_clients;
-	peers_t *getClients() const override {
+	peers_t m_clients;
+	peers_t *getClients() override {
 		return &m_clients;
 	}
 	void remove(tcp::socket *socket) override {
@@ -42,7 +42,6 @@ public:
 				}
 				else {
 					co_await Net::Communicator::writeCommand( socket, Command::Multi::SrvNeg );
-					continue;
 				}
 			} else {
 				wptrDetector = Multiple::Negotiator::create( std::move( socket ), &broker, config );

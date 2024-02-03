@@ -1,7 +1,9 @@
 // src\aliases.h - indeed
 #pragma once // Copyright 2024 Alex0vSky (https://github.com/Alex0vSky)
 namespace syscross::BenchP2p { 
+#ifdef BOOST_ASIO_HAS_CO_AWAIT
 using awaitable = boost::asio::awaitable<void>;
+#endif // BOOST_ASIO_HAS_CO_AWAIT
 using tcp = boost::asio::ip::tcp;
 // aliases
 static constexpr auto c_detached = boost::asio::detached;
@@ -14,10 +16,12 @@ inline auto buffer(Args&&... args) -> decltype( boost::asio::buffer( std::forwar
 	return boost::asio::buffer( std::forward< Args >( args )... );
 }
 
+#ifdef BOOST_ASIO_HAS_CO_AWAIT
 // Not use exception
-#ifndef c_tuple
+#	ifndef c_tuple
 static constexpr auto c_tuple = as_tuple( boost::asio::use_awaitable_t{ } );
-#endif // c_tuple_awaitable
+#	endif // c_tuple_awaitable
+#endif // BOOST_ASIO_HAS_CO_AWAIT
 
 namespace Emulation { 
 struct Config;
@@ -35,8 +39,6 @@ typedef char data_t[ c_dataInBytes ];
 typedef data_t const& cref_data_t;
 
 typedef std::deque< tcp::socket * > peers_t;
-
-typedef std::chrono::milliseconds timer_resolution_t;
 
 typedef const Emulation ::Config config_t;
 

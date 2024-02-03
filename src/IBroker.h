@@ -8,7 +8,7 @@ struct IBrokerPair {
 };
 struct IBrokerMulti {
 	virtual ~IBrokerMulti() {}
-	virtual peers_t *getClients() const = 0;
+	virtual peers_t *getClients() = 0;
 	virtual void remove(tcp::socket *) = 0;
 	virtual void drop() = 0;
 	virtual void setServer(tcp::socket *) = 0;

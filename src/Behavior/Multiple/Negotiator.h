@@ -26,7 +26,7 @@ ImServ
 		tcp::socket *server = Server::create( std::move( m_socket ), m_broker, m_config )
 			->start( );
 		m_broker ->setServer( server );
-		// wait until server work. OR void wait_handler(const boost::system::error_code& error)
+		// waiting for the server to complete. OR void wait_handler(const boost::system::error_code& error)
 		boost::system::error_code error;
 		std::tie( error ) = co_await server ->async_wait( 
 			tcp::socket::wait_error, c_tuple );

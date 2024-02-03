@@ -26,7 +26,7 @@ namespace syscross::BenchP2p {
 struct Main {
 	int run(int argc, wchar_t *argv[]) {
 		Ui::CmdLine::ArgparseImpl cmdLiner( argc, argv );
-		Emulation::Config config;
+		Emulation::Config config{ .longPingDuration_milli = 1000 };
 		u_short port = 55555;
 		if ( !cmdLiner.parse( &config, &port ) )
 			return ERROR_BAD_ARGUMENTS;
