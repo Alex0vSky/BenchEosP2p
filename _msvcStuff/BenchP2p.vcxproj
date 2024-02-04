@@ -263,6 +263,7 @@
     <ClInclude Include="..\src\Behavior\Pair.h" />
     <ClInclude Include="..\src\BrokerPair.h" />
     <ClInclude Include="..\src\BrokerMultiple.h" />
+    <ClInclude Include="..\src\Command.h" />
     <ClInclude Include="..\src\Constants.h" />
     <ClInclude Include="..\src\Emulation\Config.h" />
     <ClInclude Include="..\src\Emulation\Emulator.h" />

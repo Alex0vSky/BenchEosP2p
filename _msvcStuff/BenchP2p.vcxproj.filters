@@ -131,6 +131,9 @@
     <ClInclude Include="..\src\Ui\CmdLine\StringConvert.h">
       <Filter>Header Files\Ui\CmdLine</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
