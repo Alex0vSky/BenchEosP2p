@@ -40,6 +40,9 @@
     <Filter Include="Header Files\Ui\CmdLine">
       <UniqueIdentifier>{42249382-c295-4bef-962f-3a3932289ab3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Behavior\SinglePair">
+      <UniqueIdentifier>{e2b07a71-cd7d-4f9d-b2af-73a01e1a5536}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Command.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Behavior\SinglePair\Negotiator.h">
+      <Filter>Header Files\Behavior\SinglePair</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

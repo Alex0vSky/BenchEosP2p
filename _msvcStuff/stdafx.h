@@ -14,6 +14,7 @@
 
 // boost
 #include <boost/asio.hpp>
+#include <boost/asio/experimental/channel.hpp>
 //#pragma comment( lib, "Xxx" )
 
 // aux

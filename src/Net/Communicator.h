@@ -11,10 +11,10 @@ protected:
 		std::tie( m_error, n ) = co_await socket.async_read_some( buffer( m_data ), c_tuple );
 		co_return n;
 	}
-	boost::asio::awaitable< bool > writeData(tcp::socket &socket, std::size_t n) {
+	boost::asio::awaitable< bool > writeData(tcp::socket *socket, std::size_t n) {
 		std::size_t unused_ = 0;
-		std::tie( m_error, unused_ ) = co_await async_write( socket, buffer( m_data, n ), c_tuple );
-		co_return !m_error;
+		std::tie( m_error, unused_ ) = co_await async_write( *socket, buffer( m_data, n ), c_tuple );
+		co_return m_error.failed( );
 	}
 	auto getError() const {
 		return m_error;
@@ -24,6 +24,12 @@ protected:
 	}
 
 public:
+
+	static boost::asio::awaitable< Command::type > readCommand(tcp::socket &socket) {
+		Command::type command = { };
+		co_await async_read( socket, buffer( command ), c_tuple );
+		co_return command;
+	}
 	static boost::asio::awaitable< boost::system::error_code > writeCommand(tcp::socket &socket, Command::type command) {
 		std::size_t unused_ = 0;
 		boost::system::error_code error; 

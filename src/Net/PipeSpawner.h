@@ -3,7 +3,7 @@
 namespace syscross::BenchP2p::Net { 
 template<typename T>
 struct PipeSpawner {
-	tcp::socket *start() {
+	socket_t start() {
 		auto that = static_cast< T* >( this );
 		co_spawn( that ->getSocket( ) ->get_executor( )
 				, [self = that ->shared_from_this( )] { 

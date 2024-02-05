@@ -38,7 +38,11 @@ static const uint32_t c_dataInBytes = 1024;
 typedef char data_t[ c_dataInBytes ];
 typedef data_t const& cref_data_t;
 
-typedef std::deque< tcp::socket * > peers_t;
+typedef std::shared_ptr< tcp::socket > socket_t;
+typedef std::deque< socket_t > peers_t;
+
+// @insp https://stackoverflow.com/questions/76220547/boost-asio-implementing-events
+using channel_t = boost::asio::experimental::channel< void(boost::system::error_code, int) >;
 
 typedef const Emulation ::Config config_t;
 

@@ -30,7 +30,7 @@ ImServ
 		boost::system::error_code error;
 		std::tie( error ) = co_await server ->async_wait( 
 			tcp::socket::wait_error, c_tuple );
-		LOG( "[~] end negotiation %d '%s'", error.value( ), error.message( ).c_str( ) );
+		LOG( "[~] end negotiator %d '%s'", error.value( ), error.message( ).c_str( ) );
 	}
 
 public:
