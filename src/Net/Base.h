@@ -5,7 +5,7 @@ class Base : public Communicator {
 	socket_t m_socket;
 	Emulation::Emulator m_emergencyEmulator;
 
-	virtual peers_t *getPeers(cref_data_t, Command::type *) = 0;
+	virtual boost::asio::awaitable< peers_t * > getPeers(Command::type *) = 0;
 
 protected:
 	template<typename T> friend struct PipeSpawner;
@@ -19,7 +19,7 @@ protected:
 			if ( getError( ) )
 				break;
 			Command::type command = { };
-			peers_t *peers = getPeers( getData( ), &command );
+			peers_t *peers = co_await getPeers( &command );
 			if ( Command::type{ } != command ) 
 				co_await writeCommand( *m_socket, command );
 			if ( !peers ->size( ) ) 

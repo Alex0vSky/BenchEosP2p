@@ -5,7 +5,6 @@ struct IBrokerPair {
 	virtual ~IBrokerPair() {}
 	virtual socket_t getPair() const = 0;
 	virtual void drop() = 0;
-	virtual bool &isPaired() = 0;
 	virtual socket_t &getFirstRef() = 0;
 	virtual socket_t &getSecondRef() = 0;
 };

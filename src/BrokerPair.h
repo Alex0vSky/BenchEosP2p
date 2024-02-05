@@ -3,7 +3,6 @@
 namespace syscross::BenchP2p {
 class BrokerPair final : public IBrokerPair {
 	socket_t m_first, m_second;
-	bool m_isPaired = false;
 	socket_t getPair() const override {
 		return m_second;
 	}
@@ -15,9 +14,6 @@ class BrokerPair final : public IBrokerPair {
 		m_first = m_second = nullptr;
 		LOG( "[~] drop pair" );
 	}
-	bool &isPaired() override {
-		return m_isPaired;
-	}
 	socket_t &getFirstRef() override {
 		return m_first;
 	}
@@ -28,12 +24,8 @@ class BrokerPair final : public IBrokerPair {
 public:
 	[[nodiscard]] static awaitable listener(tcp::acceptor acceptor, config_t config) {
 		using Negotiator = Behavior::SinglePair::Negotiator;
-		using Context = Behavior::SinglePair::Context;
-		using Chanels = Behavior::SinglePair::Channels;
 		BrokerPair broker;
 		Negotiator::negotiator_t wptrFirst, wptrSecond;
-		// @insp https://stackoverflow.com/questions/76220547/boost-asio-implementing-events
-		Chanels channels( acceptor.get_executor( ) );
 		while ( true ) {
 			auto [e, socket] = co_await acceptor.async_accept( c_tuple );
 			if ( e ) {
@@ -47,12 +39,12 @@ public:
 					co_await Net::Communicator::writeCommand( socket, Command::Pair::Negott );
 				continue;
 			}
-			socket_t Socket_sptr = std::make_shared< tcp::socket >( std::move( socket ) );
+			socket_t socket_sptr = std::make_shared< tcp::socket >( std::move( socket ) );
 			if ( wptrFirst.expired( ) ) {
-				wptrFirst = Negotiator::create( { Socket_sptr, &broker, config, true, channels } );
+				wptrFirst = Negotiator::create( { socket_sptr, &broker, config, true } );
 			}
 			else 
-				wptrSecond = Negotiator::create( { Socket_sptr, &broker, config, false, channels } );
+				wptrSecond = Negotiator::create( { socket_sptr, &broker, config, false } );
 		}
 	}
 };

@@ -25,6 +25,10 @@ protected:
 
 public:
 
+	static awaitable sleep(boost::posix_time::milliseconds duration) {
+		boost::asio::deadline_timer timer( co_await boost::asio::this_coro::executor, duration );
+		co_await timer.async_wait( use_awaitable );
+	}
 	static boost::asio::awaitable< Command::type > readCommand(tcp::socket &socket) {
 		Command::type command = { };
 		co_await async_read( socket, buffer( command ), c_tuple );

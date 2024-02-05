@@ -13,25 +13,13 @@
 #include "Net/Communicator.h"
 #include "Net/Base.h"
 #include "Net/PipeSpawner.h"
-#include "Behavior/Pair.h"
+#include "Behavior/SinglePair/Pair.h"
 namespace syscross::BenchP2p::Behavior::SinglePair { 
-struct Channels {
-	channel_t m_ch1;
-	channel_t m_ch2;
-	channel_t m_ch3;
-public:
-	Channels(boost::asio::any_io_executor const& executor) :
-		m_ch1( executor, 1000 )
-		, m_ch2( executor, 1000 )
-		, m_ch3( executor, 1000 )
-	{}
-};
 struct Context {
 	const socket_t socket;
 	IBrokerPair *const broker;
 	const config_t config;
 	const bool first;
-	Channels &chanels;
 };
 }
 #include "Behavior/SinglePair/Negotiator.h"

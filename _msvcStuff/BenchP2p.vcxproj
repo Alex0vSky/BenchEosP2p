@@ -260,8 +260,8 @@
     <ClInclude Include="..\src\Behavior\Multiple\Client.h" />
     <ClInclude Include="..\src\Behavior\Multiple\Negotiator.h" />
     <ClInclude Include="..\src\Behavior\Multiple\Server.h" />
-    <ClInclude Include="..\src\Behavior\Pair.h" />
     <ClInclude Include="..\src\Behavior\SinglePair\Negotiator.h" />
+    <ClInclude Include="..\src\Behavior\SinglePair\Pair.h" />
     <ClInclude Include="..\src\BrokerPair.h" />
     <ClInclude Include="..\src\BrokerMultiple.h" />
     <ClInclude Include="..\src\Command.h" />
