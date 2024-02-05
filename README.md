@@ -8,9 +8,9 @@ Bench/Stand for Epic EOS P2P/peer-to-peer in C++ boost::asio
 
 ## Roadmap
 - [x] poc
-- [ ] Emulator::lostPacket, Emulation::Config, Emulation::Statistics
-- [ ] attach Epic EOS
-- [ ] Emulator::longPing
+- [x] Emulator::lostPacket, Emulation::Config, Emulation::Statistics
+- [x] attach Epic EOS
+- [x] Emulator::longPing
 - [ ] Emulator::bandwidth
 - [ ] Qt, FTXUI
 
@@ -21,6 +21,7 @@ Bench/Stand for Epic EOS P2P/peer-to-peer in C++ boost::asio
 ## Install
 
 ## Usage
+For my project [HelloEOS](https://github.com/Alex0vSky/HelloEOS)
 
 ## Tests
 
